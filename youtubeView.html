@@ -1,0 +1,8 @@
+<div class="youtube">
+  <h1>{{video.title}}</h1>
+  <div class="inner">
+    <iframe ng-src="{{video.videoUrl}}" width="560" height="315" allowfullscreen frameborder="0"></iframe>
+  </div>
+  <h3>{{video.date | date}}</h3>
+  <p>{{video.description}}</p>
+</div>

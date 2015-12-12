@@ -1,0 +1,40 @@
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.youtube {
+  position: relative;
+  width: 560px;
+}
+
+.youtube .inner {
+  position: relative;
+}
+
+.youtube .inner progress {
+  width: 100%;
+  position: absolute;
+  bottom: -10px;
+  -webkit-transition: opacity 1000ms;
+  -moz-transition: opacity 1000ms;
+  -o-transition: opacity 1000ms;
+  transition: opacity 1000ms;
+}
+
+.youtube iframe {
+  opacity: 0;
+  -webkit-transition: opacity 1000ms;
+  -moz-transition: opacity 1000ms;
+  -o-transition: opacity 1000ms;
+  transition: opacity 1000ms;
+}
+
+.youtube.loaded iframe {
+  opacity: 1;
+}
+
+.youtube.loaded progress {
+  opacity: 0;
+}

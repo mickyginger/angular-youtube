@@ -1,0 +1,32 @@
+<html ng-app="YoutubeApp">
+<head>
+  <title>YouTube App</title>
+  <link rel="stylesheet" type="text/css" href="/css/main.css">
+</head>
+<body ng-controller="MainController as main">
+
+  <p ng-show="!!main.errorMsg">{{main.errorMsg}}</p>
+
+  <main ng-show="main.youtubeLoaded">
+
+    <form name="main.searchForm" ng-submit="main.search()">
+      <input name="search" ng-model="main.keyword">
+      <button>Submit</button>
+    </form>
+
+    <ul>
+      <li ng-repeat="video in main.videos track by $index">
+        <youtube video="video"></youtube>
+      </li>
+    </ul>
+
+  </main>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.2/angular.min.js"></script>
+  <script src="/js/app.js"></script>
+  <script src="/js/controllers/mainController.js"></script>
+  <script src="/js/services/youtubeService.js"></script>
+  <script src="/js/directives/youtubeDirective.js"></script>
+  <script src="https://apis.google.com/js/client.js?onload=initGoogleApi"></script>
+</body>
+</html>

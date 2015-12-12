@@ -2,8 +2,8 @@ angular
   .module('YoutubeApp')
   .controller('MainController', MainController);
 
-MainController.$inject = ['$window', '$document', '$timeout', 'YoutubeService'];
-function MainController($window, $document, $timeout, YoutubeService) {
+MainController.$inject = ['$window', '$document', '$scope', 'YoutubeService'];
+function MainController($window, $document, $scope, YoutubeService) {
   var main = this;
 
   main.youtubeLoaded = false;
@@ -13,7 +13,7 @@ function MainController($window, $document, $timeout, YoutubeService) {
   $window.initGoogleApi = function() {
     gapi.client.setApiKey("AIzaSyDGn3VICr2h9ZtdgcUjmVOSCzqbtGlKnis");
     gapi.client.load('youtube', 'v3').then(function() {
-      $timeout(function() {
+      $scope.$evalAsync(function() {
         main.search();
       },0);
     });
@@ -24,7 +24,7 @@ function MainController($window, $document, $timeout, YoutubeService) {
   main.search = function() {
     YoutubeService.search(main.keyword)
     .then(function(videos) {
-      $timeout(function() {
+      $scope.$evalAsync(function() {
 
         if(videos.length === 0) {
           main.errorMsg = "No videos were found with the search term '" + main.keyword + "'. Please try again.";
@@ -38,7 +38,7 @@ function MainController($window, $document, $timeout, YoutubeService) {
       },0);
     })
     .catch(function(err) {
-      $timeout(function(){
+      $scope.$evalAsync(function(){
         main.errorMsg = "Oops! There was an error loading the video content. Please try again.";
       },0);
     });
